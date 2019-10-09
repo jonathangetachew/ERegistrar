@@ -3,7 +3,7 @@ Exercise SpringBoot Application for my CS425 Software Engineering Course at Maha
 
 ### Checklist
 * [x] Spring Boot
-* [x] Maven
+* [x] Gradle
 * [x] Spring Devtools
 * [x] Thymeleaf
 * [x] Lombok
