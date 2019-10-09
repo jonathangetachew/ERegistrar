@@ -7,6 +7,7 @@ Exercise SpringBoot Application for my CS425 Software Engineering Course at Maha
 * [x] Spring Devtools
 * [x] Thymeleaf
 * [x] Lombok
-* [ ] JPA / Hibernate
+* [x] JPA / Hibernate
+* [x] H2 Database
 * [ ] Spring Security
 
