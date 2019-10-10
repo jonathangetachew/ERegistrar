@@ -46,6 +46,7 @@ public class Student {
 	private LocalDate dateOfEnrollment;
 
 	@OneToOne
+	@JoinColumn(name = "transcript_id")
 	private Transcript transcript;
 
 	@ManyToMany

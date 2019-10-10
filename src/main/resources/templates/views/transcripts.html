@@ -9,10 +9,12 @@
         <tr>
             <th>ID</th>
             <th>Degree Title</th>
+            <th>Student</th>
         </tr>
         <tr th:each="transcript : ${transcripts}">
             <td th:text="${transcript.id}">1</td>
             <td th:text="${transcript.degreeTitle}">Verhill Hall</td>
+            <td th:text="${transcript.student.firstName}">John</td>
         </tr>
     </table>
 </body>

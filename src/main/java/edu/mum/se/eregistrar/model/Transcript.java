@@ -25,4 +25,7 @@ public class Transcript {
 	@NotEmpty
 	@Column(name = "degree_title")
 	private String degreeTitle;
+
+	@OneToOne(mappedBy = "transcript")
+	private Student student;
 }
