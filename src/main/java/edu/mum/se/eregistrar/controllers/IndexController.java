@@ -14,7 +14,7 @@ public class IndexController {
 	@RequestMapping(value = {"", "/", "/eregistrar", "/eregistrar/home"},
 					method = RequestMethod.GET)
 	public String index() {
-		return "home/index";
+		return "index";
 	}
 
 }

@@ -25,13 +25,13 @@ public class TranscriptController {
 	public String getAllTranscripts(Model model) {
 		model.addAttribute("transcripts", transcriptService.findAll());
 
-		return "routes/transcripts";
+		return "views/transcripts";
 	}
 
 	@GetMapping("/transcripts/{id}")
 	public String getTranscript(@PathVariable @Valid Long id, Model model) {
 		model.addAttribute("transcript", transcriptService.findById(id));
 
-		return "routes/transcript";
+		return "views/transcript";
 	}
 }

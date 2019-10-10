@@ -23,15 +23,15 @@ public class StudentController {
 
 	@GetMapping("/students")
 	public String getAllTranscripts(Model model) {
-		model.addAttribute("transcripts", studentService.findAll());
+		model.addAttribute("students", studentService.findAll());
 
-		return "routes/student";
+		return "views/students";
 	}
 
 	@GetMapping("/students/{id}")
 	public String getTranscript(@PathVariable @Valid Long id, Model model) {
-		model.addAttribute("transcript", studentService.findById(id));
+		model.addAttribute("student", studentService.findById(id));
 
-		return "routes/student";
+		return "views/student";
 	}
 }

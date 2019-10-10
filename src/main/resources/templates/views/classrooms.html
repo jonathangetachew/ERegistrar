@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+<head>
+    <title>ERegistrar</title>
+</head>
+<body>
+    <h1>Books List</h1>
+    <table class="responsive-table highlight">
+        <tr>
+            <th>ID</th>
+            <th>Building Name</th>
+            <th>Room Number</th>
+            <th>Students</th>
+        </tr>
+        <tr th:each="class : ${classrooms}">
+            <td th:text="${class.id}">1</td>
+            <td th:text="${class.buildingName}">Verhill Hall</td>
+            <td th:text="${class.roomNumber}">V32</td>
+            <td>
+                <span th:each="student : ${class.students}">
+                    <span th:text="${student.firstName} + ', '">John</span>
+                </span>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
