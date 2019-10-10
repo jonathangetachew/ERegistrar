@@ -6,6 +6,7 @@ Exercise SpringBoot Application for my CS425 Software Engineering Course at Maha
 * [x] Gradle
 * [x] Spring Devtools
 * [x] Thymeleaf
+* [x] Materialize CSS
 * [x] Lombok
 * [x] JPA / Hibernate
 * [x] H2 Database
