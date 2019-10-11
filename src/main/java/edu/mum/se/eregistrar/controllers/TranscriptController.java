@@ -66,7 +66,7 @@ public class TranscriptController {
 			return "views/transcript/add";
 		}
 		transcript = transcriptService.save(transcript);
-		return "redirect:/transcripts" + transcript.getId();
+		return "redirect:/transcripts/" + transcript.getId();
 	}
 
 }
