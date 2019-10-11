@@ -1,5 +1,6 @@
 package edu.mum.se.eregistrar.model;
 
+import edu.mum.se.eregistrar.enums.StudentType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -44,6 +45,9 @@ public class Student {
 	private Double cgpa;
 
 	private LocalDate dateOfEnrollment;
+
+	@Column(name = "student_type", nullable = false)
+	private StudentType studentType;
 
 	@OneToOne
 	@JoinColumn(name = "transcript_id")

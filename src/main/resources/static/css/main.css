@@ -1,0 +1,8 @@
+.section-header h1 {
+    display: inline-block;
+    background-color: blue;
+}
+
+.section-header a {
+    float: right;
+}

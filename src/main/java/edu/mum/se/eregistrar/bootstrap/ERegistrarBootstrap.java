@@ -1,5 +1,6 @@
 package edu.mum.se.eregistrar.bootstrap;
 
+import edu.mum.se.eregistrar.enums.StudentType;
 import edu.mum.se.eregistrar.model.Classroom;
 import edu.mum.se.eregistrar.model.Student;
 import edu.mum.se.eregistrar.model.Transcript;
@@ -49,6 +50,7 @@ public class ERegistrarBootstrap implements ApplicationListener<ContextRefreshed
 		student1.setLastName("Cage");
 		student1.setCgpa(3.90);
 		student1.setDateOfEnrollment(LocalDate.now());
+		student1.setStudentType(StudentType.INTERNATIONAL);
 
 		Student student2 = new Student();
 		student2.setStudentNumber(2L);
@@ -57,6 +59,7 @@ public class ERegistrarBootstrap implements ApplicationListener<ContextRefreshed
 		student2.setLastName("Jones");
 		student2.setCgpa(3.85);
 		student2.setDateOfEnrollment(LocalDate.now());
+		student2.setStudentType(StudentType.NATIONAL);
 
 		///> Load Transcripts
 		Transcript transcript1 = new Transcript();

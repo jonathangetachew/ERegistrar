@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+<head>
+    <title>ERegistrar</title>
+</head>
+<body>
+<div class="section-header">
+    <h2>Add New Student</h2>
+</div>
+<div class="row">
+    <form class="col s12" th:action="@{/students/add}" method="POST" th:object="${student}">
+        <div class="row">
+            <div class="input-field col s12">
+                <input placeholder="Student Number" th:field="*{studentNumber}" id="student_number"
+                       type="text" class="validate"
+                       required>
+                <label for="student_number">Student Number</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s4">
+                <input placeholder="First Name" id="first_name" type="text" class="validate" required>
+                <label for="first_name">First Name</label>
+            </div>
+            <div class="input-field col s4">
+                <input placeholder="Middle Name" id="middle_name" type="text" class="validate" required>
+                <label for="middle_name">Middle Name</label>
+            </div>
+            <div class="input-field col s4">
+                <input placeholder="Last Name" id="last_name" type="text" class="validate" required>
+                <label for="last_name">Last Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="CGPA" id="cgpa" type="text" class="validate" required>
+                <label for="cgpa">CGPA</label>
+            </div>
+            <div class="input-field col s6">
+                <select>
+                    <option value="" disabled selected>Choose Student Type</option>
+                    <option value="1">INTERNATIONAL</option>
+                    <option value="2">NATIONAL</option>
+                </select>
+                <label>Student Type</label>
+            </div>
+        </div>
+        <div style="float:right;">
+            <a href="/students" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">cancel</i>Cancel
+            </a>
+            <button class="waves-effect waves-light btn-large" type="submit">
+                <i class="material-icons left">send</i>Submit
+            </button>
+        </div>
+    </form>
+</div>
+<script>
+</script>
+</body>
+</html>

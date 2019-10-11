@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+<head>
+    <title>ERegistrar</title>
+</head>
+<body>
+    <div style="margin: 2rem 0;">
+        <span style="font-size: 3em;">Transcripts List</span>
+        <span style="float:right; margin-top: 1rem;">
+            <a th:href="@{'/transcripts/add'}"
+               class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add Transcript</a>
+        </span>
+    </div>
+    <table class="responsive-table highlight">
+        <tr>
+            <th>ID</th>
+            <th>Degree Title</th>
+            <th>Student</th>
+            <th></th>
+        </tr>
+        <tr th:each="transcript, i : ${transcripts}">
+            <td scope="row" th:text="${i.count}">1</td>
+            <td th:text="${transcript.degreeTitle}">Verhill Hall</td>
+            <td th:text="${transcript.student?.firstName}">John</td>
+            <td>
+                <span><a th:href="@{'/transcripts/' + ${transcript.id}}">
+                    <i class="material-icons left">view_list</i></a></span>
+                <span><a th:href="@{'/transcripts/' + ${transcript.id} + '/edit'}">
+                    <i class="material-icons left">edit</i></a></span>
+                <span><a th:href="@{'/transcripts/' + ${transcript.id} + '/delete'}">
+                    <i class="material-icons left" style="color:crimson;">delete</i></a></span>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

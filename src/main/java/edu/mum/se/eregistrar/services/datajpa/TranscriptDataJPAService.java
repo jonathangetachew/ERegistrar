@@ -29,4 +29,14 @@ public class TranscriptDataJPAService implements TranscriptService {
 	public Transcript findById(Long id) {
 		return transcriptRepository.findById(id).orElse(null);
 	}
+
+	@Override
+	public Transcript save(Transcript transcript) {
+		return transcriptRepository.save(transcript);
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		transcriptRepository.deleteById(id);
+	}
 }

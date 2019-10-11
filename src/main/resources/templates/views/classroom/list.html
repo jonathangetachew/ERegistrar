@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+<head>
+    <title>ERegistrar</title>
+</head>
+<body>
+    <div style="margin: 2rem 0;">
+        <span style="font-size: 3em;">Classrooms List</span>
+        <span style="float:right; margin-top: 1rem;">
+                <a th:href="@{'/classrooms/add'}"
+                   class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add Classroom</a>
+            </span>
+    </div>
+    <table class="responsive-table highlight">
+        <tr>
+            <th>#</th>
+            <th>Building Name</th>
+            <th>Room Number</th>
+            <th>Students</th>
+            <th></th>
+        </tr>
+        <tr th:each="class, i : ${classrooms}">
+            <td scope="row" th:text="${i.count}">1</td>
+            <td th:text="${class.buildingName}">Verhill Hall</td>
+            <td th:text="${class.roomNumber}">V32</td>
+            <td>
+                <span th:each="student : ${class.students}">
+                    <span th:text="${student.firstName} + ', '">John</span>
+                </span>
+            </td>
+            <td>
+                <span><a th:href="@{'/classrooms/' + ${class.id}}">
+                    <i class="material-icons left">view_list</i></a></span>
+                <span><a th:href="@{'/classrooms/' + ${class.id} + '/edit'}">
+                    <i class="material-icons left">edit</i></a></span>
+                <span><a th:href="@{'/classrooms/' + ${class.id} + '/delete'}">
+                    <i class="material-icons left" style="color:crimson;">delete</i></a></span>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

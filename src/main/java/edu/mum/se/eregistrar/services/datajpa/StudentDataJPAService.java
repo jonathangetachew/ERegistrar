@@ -29,4 +29,14 @@ public class StudentDataJPAService implements StudentService {
 	public Student findById(Long id) {
 		return studentRepository.findById(id).orElse(null);
 	}
+
+	@Override
+	public Student save(Student student) {
+		return studentRepository.save(student);
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		studentRepository.deleteById(id);
+	}
 }

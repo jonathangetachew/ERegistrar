@@ -5,11 +5,13 @@
 
 <!--    <link rel="shortcut icon" type="image/x-icon" th:href="@{/resources/images/favicon.png}">-->
 
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!--    Materialize-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <title>ERegistrar</title>
 
-<!--    <link rel="stylesheet" th:href="@{/resources/css/main.css}"/>-->
+<link rel="stylesheet" href="./css/main.css" th:href="@{/resources/css/main.css}"/>
 
 </head>
 
@@ -44,6 +46,15 @@
 
 <!--    Materialize-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    window.onload(function () {
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems, options);
+        });
+
+    });
+</script>
 </body>
 
 </html>

@@ -29,4 +29,14 @@ public class ClassroomDataJPAService implements ClassroomService {
 	public Classroom findById(Long id) {
 		return classroomRepository.findById(id).orElse(null);
 	}
+
+	@Override
+	public Classroom save(Classroom classroom) {
+		return classroomRepository.save(classroom);
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		classroomRepository.deleteById(id);
+	}
 }

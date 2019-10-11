@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+<head>
+    <title>ERegistrar</title>
+</head>
+<body>
+    <div style="margin: 2rem 0;">
+        <span style="font-size: 3em;">Students List</span>
+        <span style="float:right; margin-top: 1rem;">
+                <a th:href="@{'/students/add'}"
+                   class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add Student</a>
+            </span>
+    </div>
+    <table class="responsive-table highlight">
+        <tr>
+            <th>#</th>
+            <th>Student Number</th>
+            <th>Full Name</th>
+            <th>CGPA</th>
+            <th>Date Of Enrollment</th>
+            <th>Transcript</th>
+            <th>Classrooms</th>
+            <th>Type</th>
+            <th></th>
+        </tr>
+        <tr th:each="student, i : ${students}">
+            <td scope="row" th:text="${i.count}">1</td>
+            <td th:text="${student.studentNumber}">1</td>
+            <td th:text="${student.firstName} + ' ' + ${student.middleName} + ' ' + ${student.lastName}">John James Doe</td>
+            <td th:text="${student.cgpa}">4.0</td>
+            <td th:text="${student.dateOfEnrollment}">22/2/2019</td>
+            <td th:text="${student.transcript.degreeTitle}">BS Everything</td>
+            <td>
+                <span th:each="class : ${student.classrooms}">
+                    <span th:text="${class.roomNumber} + ', '">Class</span>
+                </span>
+            </td>
+            <td th:text="${student.studentType}">International</td>
+            <td>
+                <span><a th:href="@{'/students/' + ${student.id}}">
+                    <i class="material-icons left">view_list</i></a></span>
+                <span><a th:href="@{'/students/' + ${student.id} + '/edit'}">
+                    <i class="material-icons left">edit</i></a></span>
+                <span><a th:href="@{'/studnets/' + ${student.id} + '/delete'}">
+                    <i class="material-icons left" style="color:crimson;">delete</i></a></span>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

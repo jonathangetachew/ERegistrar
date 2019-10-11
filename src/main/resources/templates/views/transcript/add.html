@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+<head>
+    <title>ERegistrar</title>
+</head>
+<body>
+<div class="section-header">
+    <h2>Add New Transcript</h2>
+</div>
+<div class="row">
+    <form class="col s12" th:action="@{/transcripts/add}" method="POST" th:object="${transcript}">
+        <div class="row">
+            <div class="input-field col s12">
+                <input placeholder="Degree Title" th:field="*{degreeTitle}" id="degree_title"
+                       type="text" class="validate"
+                required>
+                <label for="degree_title">Degree Title</label>
+            </div>
+        </div>
+        <div style="float:right;">
+            <a href="/transcripts" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">cancel</i>Cancel
+            </a>
+            <button class="waves-effect waves-light btn-large" type="submit">
+                <i class="material-icons left">send</i>Submit
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
