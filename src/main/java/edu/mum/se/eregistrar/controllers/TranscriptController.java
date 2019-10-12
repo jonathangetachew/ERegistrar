@@ -22,9 +22,28 @@ public class TranscriptController {
 		this.transcriptService = transcriptService;
 	}
 
+	/**
+	 *
+	 * Get Mappings
+	 *
+	 * @param pageNo
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/transcripts")
-	public String getAllTranscripts(Model model) {
-		model.addAttribute("transcripts", transcriptService.findAll());
+	public String getAllTranscripts(@RequestParam(defaultValue = "0") @Valid int pageNo, Model model) {
+		model.addAttribute("transcripts", transcriptService.findAll(pageNo));
+		model.addAttribute("currentPageNo", pageNo);
+
+		return "views/transcript/list";
+	}
+
+	@GetMapping("/transcripts/{degreeTitle}")
+	public String getTranscriptByDegreeTitle(@PathVariable @Valid String degreeTitle,
+	                                         @RequestParam(defaultValue = "0") @Valid int pageNo,
+	                                         Model model) {
+		model.addAttribute("transcripts", transcriptService.findTranscriptByDegreeTitle(degreeTitle, pageNo));
+		model.addAttribute("currentPageNo", pageNo);
 
 		return "views/transcript/list";
 	}
@@ -40,6 +59,12 @@ public class TranscriptController {
 	public String addNewTranscript(Model model) {
 		model.addAttribute("transcript", new Transcript());
 		return "views/transcript/add";
+	}
+
+	@GetMapping("/transcripts/{id}/edit")
+	public String editTranscript(@PathVariable @Valid Long id, Model model) {
+		model.addAttribute("transcript", transcriptService.findById(id));
+		return "views/transcript/edit";
 	}
 
 	@GetMapping("/transcripts/{id}/delete")
@@ -59,13 +84,25 @@ public class TranscriptController {
 	 * @return
 	 */
 	@PostMapping("/transcripts/add")
-	public String addNewTranscript(@Valid @ModelAttribute("transcript") Transcript transcript,
+	public String addNewTranscript(@Valid @ModelAttribute Transcript transcript,
 	                         BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("errors", bindingResult.getAllErrors());
 			return "views/transcript/add";
 		}
-		transcript = transcriptService.save(transcript);
+		transcript = transcriptService.create(transcript);
+		return "redirect:/transcripts/" + transcript.getId();
+	}
+
+	@PostMapping("/transcripts/{id}/edit")
+	public String editTranscript(@Valid @ModelAttribute Transcript updatedTranscript,
+	                         @PathVariable @Valid Long id,
+	                         BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("errors", bindingResult.getAllErrors());
+			return "views/transcript/edit";
+		}
+		Transcript transcript = transcriptService.update(updatedTranscript, id);
 		return "redirect:/transcripts/" + transcript.getId();
 	}
 

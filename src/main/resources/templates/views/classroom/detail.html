@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+<head>
+    <title>ERegistrar</title>
+</head>
+<body>
+<div class="section-header">
+    <h2>Classroom Details</h2>
+</div>
+<div>
+    <table class="responsive-table highlight">
+        <tr>
+            <th colspan="2">Classroom Information</th>
+        </tr>
+        <tr>
+            <td>Classroom ID</td>
+            <td th:text="${classroom.id}">Classroom ID</td>
+        </tr>
+        <tr>
+            <td>Building Name</td>
+            <td th:text="${classroom.buildingName}">Building Name</td>
+        </tr>
+        <tr>
+            <td>Room Number</td>
+            <td th:text="${classroom.roomNumber}">Room Number</td>
+        </tr>
+        <tr>
+            <th colspan="2">Students Information</th>
+        </tr>
+        <tr>
+            <td>Student ID</td>
+            <td>Student Number</td>
+            <td>Student Full Name</td>
+            <td>CGPA</td>
+            <td>Date Of Enrollment</td>
+            <td>Student Type</td>
+        </tr>
+        <tr th:each="student : ${classroom.students}">
+            <td th:text="${student?.id}">1</td>
+            <td th:text="${student?.studentNumber}">1</td>
+            <td th:text="${student?.firstName} + ' ' + ${student?.middleName} + ' ' + ${student?.lastName}">John Doe</td>
+            <td th:text="${student?.cgpa}">4.0</td>
+            <td th:text="${student?.dateOfEnrollment}">Date</td>
+            <td th:text="${student.studentType}">INTERNATIONAL</td>
+        </tr>
+
+    </table>
+</div>
+</body>
+</html>

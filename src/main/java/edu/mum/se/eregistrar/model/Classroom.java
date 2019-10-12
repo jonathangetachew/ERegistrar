@@ -29,6 +29,6 @@ public class Classroom {
 	@Column(name = "room_number")
 	private String roomNumber;
 
-	@ManyToMany(mappedBy = "classrooms")
+	@ManyToMany(mappedBy = "classrooms", cascade = CascadeType.ALL)
 	private List<Student> students = new ArrayList<>();
 }

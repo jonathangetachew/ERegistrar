@@ -3,6 +3,9 @@ package edu.mum.se.eregistrar.services.datajpa;
 import edu.mum.se.eregistrar.model.Classroom;
 import edu.mum.se.eregistrar.repositories.ClassroomRepository;
 import edu.mum.se.eregistrar.services.ClassroomService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,8 +24,8 @@ public class ClassroomDataJPAService implements ClassroomService {
 	}
 
 	@Override
-	public List<Classroom> findAll() {
-		return classroomRepository.findAll();
+	public Page<Classroom> findAll(int pageNo) {
+		return classroomRepository.findAll(PageRequest.of(pageNo, 3, Sort.by("buildingName")));
 	}
 
 	@Override
@@ -31,8 +34,20 @@ public class ClassroomDataJPAService implements ClassroomService {
 	}
 
 	@Override
-	public Classroom save(Classroom classroom) {
+	public Classroom create(Classroom classroom) {
 		return classroomRepository.save(classroom);
+	}
+
+	@Override
+	public Classroom update(Classroom newClassroom, Long id) {
+		return classroomRepository.findById(id)
+			.map(classroom -> {
+				classroom.setBuildingName(newClassroom.getBuildingName());
+				classroom.setRoomNumber(newClassroom.getRoomNumber());
+				classroom.setStudents(newClassroom.getStudents());
+
+				return classroomRepository.save(classroom);
+			}).orElse(null);
 	}
 
 	@Override

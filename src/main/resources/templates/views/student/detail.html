@@ -41,22 +41,24 @@
         </tr>
         <tr>
             <td>Transcript ID</td>
-            <td th:text="${student.transcript?.id}">1</td>
+            <td>Transcript Degree Title</td>
         </tr>
         <tr>
-            <td>Transcript Degree Title</td>
+            <td th:text="${student.transcript?.id}">1</td>
             <td th:text="${student.transcript?.degreeTitle}">Degree</td>
         </tr>
 
         <tr>
             <th colspan="2">Classrooms Information</th>
         </tr>
-        <tr th:each="class : ${student.classrooms}">
+        <tr>
             <td>Classroom ID</td>
-            <td th:text="${class?.id}">1</td>
             <td>Classroom Building Name</td>
-            <td th:text="${class?.buildingName}">Library</td>
             <td>Classroom Room Number</td>
+        </tr>
+        <tr th:each="class : ${student.classrooms}">
+            <td th:text="${class?.id}">1</td>
+            <td th:text="${class?.buildingName}">Library</td>
             <td th:text="${class?.roomNumber}">L209</td>
         </tr>
     </table>

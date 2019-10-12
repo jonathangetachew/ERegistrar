@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+<head>
+    <title>ERegistrar</title>
+</head>
+<body>
+<div class="section-header">
+    <h2>Edit Student</h2>
+</div>
+<div class="row">
+    <form class="col s12" th:action="@{'/students/' + ${student.id} + '/edit'}" method="POST" th:object="${student}">
+        <div style="margin: 1rem 0;">
+            <span style="font-size: 2em;">Student Information</span>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input placeholder="Student Number" th:field="*{studentNumber}" id="student_number"
+                       type="text" class="validate"
+                       th:value="*{studentNumber}"
+                       required>
+                <label for="student_number">Student Number</label>
+                <span th:if="${#fields.hasErrors('studentNumber')}"
+                      th:errors="*{studentNumber}"
+                      class="helper-text"
+                      data-error="wrong"
+                      data-success="right">
+                    Error
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s4">
+                <input placeholder="First Name" id="first_name" type="text" class="validate" th:value="*{firstName}" required>
+                <label for="first_name">First Name</label>
+                <span th:if="${#fields.hasErrors('firstName')}"
+                      th:errors="*{firstName}"
+                      class="helper-text"
+                      data-error="wrong"
+                      data-success="right">
+                    Error
+                </span>
+            </div>
+            <div class="input-field col s4">
+                <input placeholder="Middle Name" id="middle_name" type="text" class="validate" th:value="*{middleName}" required>
+                <label for="middle_name">Middle Name</label>
+                <span th:if="${#fields.hasErrors('middleName')}"
+                      th:errors="*{middleName}"
+                      class="helper-text"
+                      data-error="wrong"
+                      data-success="right">
+                    Error
+                </span>
+            </div>
+            <div class="input-field col s4">
+                <input placeholder="Last Name" id="last_name" type="text" class="validate" th:value="*{lastName}" required>
+                <label for="last_name">Last Name</label>
+                <span th:if="${#fields.hasErrors('lastName')}"
+                      th:errors="*{lastName}"
+                      class="helper-text"
+                      data-error="wrong"
+                      data-success="right">
+                    Error
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="CGPA" id="cgpa" type="text" class="validate" th:value="*{cgpa}" required>
+                <label for="cgpa">CGPA</label>
+                <span th:if="${#fields.hasErrors('cgpa')}"
+                      th:errors="*{cgpa}"
+                      class="helper-text"
+                      data-error="wrong"
+                      data-success="right">
+                    Error
+                </span>
+            </div>
+            <div class="input-field col s6">
+                <select th:field="*{studentType}" th:value="*{studentType}" class="browser-default">
+                    <option value="" disabled selected>Choose Student Type</option>
+                    <option th:each="studentTypeValue : ${T(edu.mum.se.eregistrar.enums.StudentType).values()}"
+                            th:value="${studentTypeValue.name()}"
+                            th:text="${studentTypeValue.name()}">INTERNATIONAL</option>
+                </select>
+            </div>
+        </div>
+        <div style="float:right;">
+            <a href="/students" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">cancel</i>Cancel
+            </a>
+            <button class="waves-effect waves-light btn-large" type="submit">
+                <i class="material-icons left">send</i>Submit
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

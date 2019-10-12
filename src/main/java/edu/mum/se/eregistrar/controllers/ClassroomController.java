@@ -4,10 +4,8 @@ import edu.mum.se.eregistrar.model.Classroom;
 import edu.mum.se.eregistrar.services.ClassroomService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -31,8 +29,9 @@ public class ClassroomController {
 	 * @return
 	 */
 	@GetMapping("/classrooms")
-	public String getAllClassrooms(Model model) {
-		model.addAttribute("classrooms", classroomService.findAll());
+	public String getAllClassrooms(@RequestParam(defaultValue = "0") @Valid int pageNo, Model model) {
+		model.addAttribute("classrooms", classroomService.findAll(pageNo));
+		model.addAttribute("currentPageNo", pageNo);
 
 		return "views/classroom/list";
 	}
@@ -45,7 +44,14 @@ public class ClassroomController {
 	}
 
 	@GetMapping("/classrooms/add")
-	public String addClassroom(@PathVariable @Valid Long id, Model model) {
+	public String addClassroom(Model model) {
+		model.addAttribute("classroom", new Classroom());
+		return "views/classroom/add";
+	}
+
+	@GetMapping("/classrooms/{id}/edit")
+	public String editClassroom(@PathVariable @Valid Long id, Model model) {
+		model.addAttribute("classroom", classroomService.findById(id));
 		return "views/classroom/edit";
 	}
 
@@ -55,16 +61,38 @@ public class ClassroomController {
 
 		return "redirect:/classrooms";
 	}
+
 	/**
 	 *
 	 * Post Mappings
 	 *
+	 * @param classroom
+	 * @param bindingResult
+	 * @param model
+	 * @return
 	 */
 	@PostMapping("/classrooms/add")
-	public String addClassroom(@ModelAttribute("newClassroom") Classroom classroom) {
+	public String addClassroom(@ModelAttribute Classroom classroom,
+	                           BindingResult bindingResult, Model model) {
 
-		classroomService.save(classroom);
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("errors", bindingResult.getAllErrors());
+			return "views/classroom/add";
+		}
 
-		return "redirect:/list";
+		classroom = classroomService.create(classroom);
+		return "redirect:/classrooms/" + classroom.getId();
+	}
+
+	@PostMapping("/classrooms/{id}/edit")
+	public String editClassroom(@Valid @ModelAttribute Classroom updatedClassroom,
+	                               @PathVariable @Valid Long id,
+	                               BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("errors", bindingResult.getAllErrors());
+			return "views/classroom/edit";
+		}
+		Classroom classroom = classroomService.update(updatedClassroom, id);
+		return "redirect:/classrooms/" + classroom.getId();
 	}
 }

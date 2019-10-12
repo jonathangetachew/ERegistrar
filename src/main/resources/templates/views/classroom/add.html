@@ -5,24 +5,22 @@
 </head>
 <body>
 <div class="section-header">
-    <h2>Edit Classroom</h2>
+    <h2>Add Classroom</h2>
 </div>
 <div class="row">
-    <form class="col s12" th:action="@{'/classrooms/' + ${classroom.id} + '/edit'}" method="POST" th:object="${classroom}">
+    <form class="col s12" th:action="@{/classrooms/add}" method="POST" th:object="${classroom}">
         <div class="row">
             <div class="input-field col s12">
                 <input placeholder="Building Name" th:field="*{buildingName}" id="building_name"
                        type="text" class="validate"
-                       th:value="*{buildingName}"
                        required>
                 <label for="building_name">Building Name</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input placeholder="Room Number" th:field="*{roomNumber}" id="room_number"
+                <input placeholder="Room Title" th:field="*{roomNumber}" id="room_number"
                        type="text" class="validate"
-                       th:value="*{roomNumber}"
                        required>
                 <label for="room_number">Room Number</label>
             </div>
