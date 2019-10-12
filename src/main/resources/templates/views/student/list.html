@@ -16,7 +16,8 @@
         <form class="col s6" th:action="@{/students/search}" method="get">
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="search" placeholder="Search by First Name" type="search" class="validate" th:name="keyword">
+                    <input id="search" placeholder="Search by First Name" type="search" class="validate"
+                           th:name="keyword" required>
                     <label for="search">Search</label>
                 </div>
                 <div class="input-field col s6" style="float:right;">
