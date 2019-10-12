@@ -36,6 +36,16 @@ public class ClassroomController {
 		return "views/classroom/list";
 	}
 
+	@GetMapping("/classrooms/search")
+	public String getClassroomsByBuildingName(@RequestParam("keyword") @Valid String keyword,
+	                                         @RequestParam(defaultValue = "0") @Valid int pageNo,
+	                                         Model model) {
+		model.addAttribute("classrooms", classroomService.findClassroomByBuildingName(keyword, pageNo));
+		model.addAttribute("currentPageNo", pageNo);
+
+		return "views/classroom/search";
+	}
+
 	@GetMapping("/classrooms/{id}")
 	public String getClassroom(@PathVariable @Valid Long id, Model model) {
 		model.addAttribute("classroom", classroomService.findById(id));

@@ -5,27 +5,11 @@
 </head>
 <body>
     <div style="margin: 2rem 0;">
-        <span style="font-size: 3em;">Transcripts List</span>
+        <span style="font-size: 3em;">Transcript Search Results</span>
         <span style="float:right; margin-top: 1rem;">
-            <a th:href="@{'/transcripts/add'}"
-               class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add Transcript</a>
+            <a th:href="@{'/transcripts'}"
+               class="waves-effect waves-light btn"><i class="material-icons left">arrow_back</i>Go Back to Transcript List</a>
         </span>
-    </div>
-    <!-- Search -->
-    <div class="row">
-        <form class="col s6" th:action="@{/transcripts/search}" method="get">
-            <div class="row">
-                <div class="input-field col s6">
-                    <input id="search" placeholder="Search by Degree Title" type="search" class="validate" th:name="keyword">
-                    <label for="search">Search</label>
-                </div>
-                <div class="input-field col s6" style="float:right;">
-                    <button class="waves-effect waves-light btn-large" type="submit">
-                        <i class="material-icons left">search</i>Search
-                    </button>
-                </div>
-            </div>
-        </form>
     </div>
     <table class="responsive-table highlight">
         <tr>
@@ -53,15 +37,15 @@
         <ul class="pagination" th:if="${transcripts!=null and !transcripts.isEmpty()}">
             <li class="disabled" style="font-weight: bold; margin-right: 10px;">Pages: </li>
             <li
-                    th:each="i : ${#numbers.sequence(1, transcripts.totalPages)}"
-                    th:class="${currentPageNo}==${i-1}?'blue lighten-1 active':'blue lighten-1'"
-            >
+                th:each="i : ${#numbers.sequence(1, transcripts.totalPages)}"
+                th:class="${currentPageNo}==${i-1}?'blue lighten-1 active':'blue lighten-1'"
+                >
                 <a th:href="@{/transcripts/search(pageNo=${i-1})}"
                    th:text="${i}" class = "page-link"></a>
             </li>
         </ul>
         <ul class="pagination" th:if="${transcripts==null or transcripts.isEmpty()}">
-            <li class="disabled" style="font-weight: bold; margin-right: 10px;">No Transcripts Found</li>
+            <li class="disabled" style="font-weight: bold; margin-right: 10px;">No Transcripts Found for Your Search Query</li>
         </ul>
     </div>
 </body>

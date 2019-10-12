@@ -5,27 +5,11 @@
 </head>
 <body>
     <div style="margin: 2rem 0;">
-        <span style="font-size: 3em;">Classrooms List</span>
+        <span style="font-size: 3em;">Classroom Search Results</span>
         <span style="float:right; margin-top: 1rem;">
-                <a th:href="@{'/classrooms/add'}"
-                   class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add Classroom</a>
-            </span>
-    </div>
-    <!-- Search -->
-    <div class="row">
-        <form class="col s6" th:action="@{/classrooms/search}" method="get">
-            <div class="row">
-                <div class="input-field col s6">
-                    <input id="search" placeholder="Search by Building Name" type="search" class="validate" th:name="keyword">
-                    <label for="search">Search</label>
-                </div>
-                <div class="input-field col s6" style="float:right;">
-                    <button class="waves-effect waves-light btn-large" type="submit">
-                        <i class="material-icons left">search</i>Search
-                    </button>
-                </div>
-            </div>
-        </form>
+            <a th:href="@{'/classrooms'}"
+               class="waves-effect waves-light btn"><i class="material-icons left">arrow_back</i>Go Back to Classroom List</a>
+        </span>
     </div>
     <table class="responsive-table highlight">
         <tr>

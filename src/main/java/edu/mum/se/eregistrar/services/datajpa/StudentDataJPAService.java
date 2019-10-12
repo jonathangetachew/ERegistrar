@@ -32,6 +32,11 @@ public class StudentDataJPAService implements StudentService {
 	}
 
 	@Override
+	public Page<Student> findStudentByFirstName(String firstName, int pageNo) {
+		return studentRepository.findByFirstName(firstName, PageRequest.of(pageNo, 3, Sort.by("firstName")));
+	}
+
+	@Override
 	public Student create(Student student) {
 		return studentRepository.save(student);
 	}

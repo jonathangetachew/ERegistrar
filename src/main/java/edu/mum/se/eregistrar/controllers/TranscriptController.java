@@ -38,14 +38,14 @@ public class TranscriptController {
 		return "views/transcript/list";
 	}
 
-	@GetMapping("/transcripts/{degreeTitle}")
-	public String getTranscriptByDegreeTitle(@PathVariable @Valid String degreeTitle,
+	@GetMapping("/transcripts/search")
+	public String getTranscriptByDegreeTitle(@RequestParam("keyword") @Valid String keyword,
 	                                         @RequestParam(defaultValue = "0") @Valid int pageNo,
 	                                         Model model) {
-		model.addAttribute("transcripts", transcriptService.findTranscriptByDegreeTitle(degreeTitle, pageNo));
+		model.addAttribute("transcripts", transcriptService.findTranscriptByDegreeTitle(keyword, pageNo));
 		model.addAttribute("currentPageNo", pageNo);
 
-		return "views/transcript/list";
+		return "views/transcript/search";
 	}
 
 	@GetMapping("/transcripts/{id}")

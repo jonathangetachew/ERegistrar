@@ -31,6 +31,16 @@ public class StudentController {
 		return "views/student/list";
 	}
 
+	@GetMapping("/students/search")
+	public String getStudentsByFirstName(@RequestParam("keyword") @Valid String keyword,
+                                         @RequestParam(defaultValue = "0") @Valid int pageNo,
+                                         Model model) {
+		model.addAttribute("students", studentService.findStudentByFirstName(keyword, pageNo));
+		model.addAttribute("currentPageNo", pageNo);
+
+		return "views/student/search";
+	}
+
 	@GetMapping("/students/{id}")
 	public String getStudent(@PathVariable @Valid Long id, Model model) {
 		model.addAttribute("student", studentService.findById(id));

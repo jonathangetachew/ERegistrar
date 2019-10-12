@@ -34,6 +34,11 @@ public class ClassroomDataJPAService implements ClassroomService {
 	}
 
 	@Override
+	public Page<Classroom> findClassroomByBuildingName(String buildingName, int pageNo) {
+		return classroomRepository.findByBuildingName(buildingName, PageRequest.of(pageNo, 3, Sort.by("buildingName")));
+	}
+
+	@Override
 	public Classroom create(Classroom classroom) {
 		return classroomRepository.save(classroom);
 	}
