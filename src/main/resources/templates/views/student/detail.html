@@ -4,64 +4,44 @@
     <title>ERegistrar</title>
 </head>
 <body>
-<div class="section-header">
-    <h2>Student Details</h2>
-</div>
-<div>
-    <table class="responsive-table highlight">
-        <tr>
-            <th colspan="2">Student Information</th>
-        </tr>
-        <tr>
-            <td>Student ID</td>
-            <td th:text="${student.id}">Student ID</td>
-        </tr>
-        <tr>
-            <td>Student Number</td>
-            <td th:text="${student.studentNumber}">Student Number</td>
-        </tr>
-        <tr>
-            <td>Full Name</td>
-            <td th:text="${student.firstName} + ' ' + ${student.middleName} + ' ' + ${student.lastName}">John Doe</td>
-        </tr>
-        <tr>
-            <td>CGPA</td>
-            <td th:text="${student.cgpa}">4.0</td>
-        </tr>
-        <tr>
-            <td>Date Of Enrollment</td>
-            <td th:text="${student.dateOfEnrollment}">Date</td>
-        </tr>
-        <tr>
-            <td>Student Type</td>
-            <td th:text="${student.studentType}">INTERNATIONAL</td>
-        </tr>
-        <tr>
-            <th colspan="2">Transcript Information</th>
-        </tr>
-        <tr>
-            <td>Transcript ID</td>
-            <td>Transcript Degree Title</td>
-        </tr>
-        <tr>
-            <td th:text="${student.transcript?.id}">1</td>
-            <td th:text="${student.transcript?.degreeTitle}">Degree</td>
-        </tr>
-
-        <tr>
-            <th colspan="2">Classrooms Information</th>
-        </tr>
-        <tr>
-            <td>Classroom ID</td>
-            <td>Classroom Building Name</td>
-            <td>Classroom Room Number</td>
-        </tr>
-        <tr th:each="class : ${student.classrooms}">
-            <td th:text="${class?.id}">1</td>
-            <td th:text="${class?.buildingName}">Library</td>
-            <td th:text="${class?.roomNumber}">L209</td>
-        </tr>
-    </table>
-</div>
+    <div style="margin: 2rem 0;">
+        <span style="font-size: 3em;">Student Details</span>
+        <span style="float:right; margin-top: 1rem;">
+            <a th:href="@{'/students/' + ${student.id} + '/edit'}"
+               class="waves-effect waves-light btn"><i class="material-icons left">edit</i>Edit Student</a>
+        </span>
+    </div>
+    <div>
+        <table class="responsive-table highlight">
+            <tr>
+                <td>Student ID</td>
+                <td th:text="${student.id}">Student ID</td>
+            </tr>
+            <tr>
+                <td>Student Number</td>
+                <td th:text="${student.studentNumber}">Student Number</td>
+            </tr>
+            <tr>
+                <td>Full Name</td>
+                <td th:text="${student.firstName} + ' ' + ${student.middleName} + ' ' + ${student.lastName}">John Doe</td>
+            </tr>
+            <tr>
+                <td>CGPA</td>
+                <td th:text="${student.cgpa}">4.0</td>
+            </tr>
+            <tr>
+                <td>Date Of Enrollment</td>
+                <td th:text="${student.dateOfEnrollment}">Date</td>
+            </tr>
+            <tr>
+                <td>Student Type</td>
+                <td th:text="${student.studentType}">INTERNATIONAL</td>
+            </tr>
+            <tr>
+                <td>Transcript Degree Title</td>
+                <td th:text="${student.transcript?.degreeTitle}">Degree Title</td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

@@ -4,36 +4,24 @@
     <title>ERegistrar</title>
 </head>
 <body>
-<div class="section-header">
-    <h2>Transcript Details</h2>
-</div>
-<div>
-    <table class="responsive-table highlight">
-        <tr>
-            <th colspan="2">Transcript Information</th>
-        </tr>
-        <tr>
-            <td>Transcript ID</td>
-            <td th:text="${transcript.id}">Transcript ID</td>
-        </tr>
-        <tr>
-            <td>Degree Title</td>
-            <td th:text="${transcript.degreeTitle}">Computer Science</td>
-        </tr>
-        <tr>
-            <th colspan="2">Student Information</th>
-        </tr>
-        <tr>
-            <td>Student ID</td>
-            <td th:text="${transcript.student?.id}">1</td>
-        </tr>
-        <tr>
-            <td>Student Name</td>
-            <td th:text="${transcript.student?.firstName} + ' '
-                        + ${transcript.student?.middleName} + ' '
-                        + ${transcript.student?.lastName}">John Doe</td>
-        </tr>
-    </table>
-</div>
+    <div style="margin: 2rem 0;">
+        <span style="font-size: 3em;">Transcript Details</span>
+        <span style="float:right; margin-top: 1rem;">
+            <a th:href="@{'/transcripts/' + ${transcript.id} + '/edit'}"
+               class="waves-effect waves-light btn"><i class="material-icons left">edit</i>Edit Transcript</a>
+        </span>
+    </div>
+    <div>
+        <table class="responsive-table highlight">
+            <tr>
+                <td>Transcript ID</td>
+                <td th:text="${transcript.id}">Transcript ID</td>
+            </tr>
+            <tr>
+                <td>Degree Title</td>
+                <td th:text="${transcript.degreeTitle}">Computer Science</td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
