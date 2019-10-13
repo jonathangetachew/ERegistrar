@@ -26,6 +26,6 @@ public class Transcript {
 	@Column(name = "degree_title")
 	private String degreeTitle;
 
-	@OneToOne(mappedBy = "transcript", cascade = CascadeType.ALL)
+	@OneToOne
 	private Student student;
 }

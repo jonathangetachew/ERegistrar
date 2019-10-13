@@ -29,6 +29,18 @@ public class Classroom {
 	@Column(name = "room_number")
 	private String roomNumber;
 
-	@ManyToMany(mappedBy = "classrooms", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "classrooms")
 	private List<Student> students = new ArrayList<>();
+
+	/**
+	 *
+	 * Remove Classroom entries from each student who have reference to this object as their classroom
+	 *
+	 */
+	@PreRemove
+	private void removeClassroomFromStudents() {
+		for (Student s : students) {
+			s.getClassrooms().remove(this);
+		}
+	}
 }

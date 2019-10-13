@@ -81,7 +81,7 @@ public class StudentController {
 	                               BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("errors", bindingResult.getAllErrors());
-			return "views/students/add";
+			return "views/student/add";
 		}
 		student = studentService.create(student);
 		return "redirect:/students/" + student.getId();

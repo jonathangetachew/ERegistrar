@@ -4,15 +4,8 @@
     <title>ERegistrar</title>
 </head>
 <body>
-    <div style="margin: 2rem 0;">
-        <span style="font-size: 3em;">Classrooms List</span>
-        <span style="float:right; margin-top: 1rem;">
-                <a th:href="@{'/classrooms/add'}"
-                   class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add Classroom</a>
-            </span>
-    </div>
     <!-- Search -->
-    <div class="row">
+    <div class="row" style="margin-top: 2rem;">
         <form class="col s6" th:action="@{/classrooms/search}" method="get">
             <div class="row">
                 <div class="input-field col s6">
@@ -28,6 +21,13 @@
             </div>
         </form>
     </div>
+    <div style="margin: 1rem 0;">
+        <span style="font-size: 3em;">Classrooms List</span>
+        <span style="float:right; margin-top: 1rem;">
+                <a th:href="@{'/classrooms/add'}"
+                   class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add Classroom</a>
+            </span>
+    </div>
     <table class="responsive-table highlight">
         <tr>
             <th>#</th>
@@ -40,11 +40,7 @@
             <td scope="row" th:text="${i.count}">1</td>
             <td th:text="${class.buildingName}">Verhill Hall</td>
             <td th:text="${class.roomNumber}">V32</td>
-            <td>
-                <span th:each="student : ${class.students}">
-                    <span th:text="${student.firstName} + ', '">John</span>
-                </span>
-            </td>
+            <td th:text="${class.students.size()}">100</td>
             <td>
                 <span><a th:href="@{'/classrooms/' + ${class.id}}">
                     <i class="material-icons left">view_list</i></a></span>

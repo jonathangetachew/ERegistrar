@@ -46,11 +46,11 @@ public class Student {
 
 	private LocalDate dateOfEnrollment;
 
+	@Enumerated(value = EnumType.STRING)
 	@Column(name = "student_type", nullable = false)
 	private StudentType studentType;
 
-	@OneToOne
-	@JoinColumn(name = "transcript_id")
+	@OneToOne(cascade = CascadeType.ALL, optional = true)
 	private Transcript transcript;
 
 	@ManyToMany
@@ -58,4 +58,10 @@ public class Student {
 			joinColumns = @JoinColumn(name = "student_id"),
 			inverseJoinColumns = @JoinColumn(name = "classroom_id"))
 	private List<Classroom> classrooms = new ArrayList<>();
+
+	///> Custom Setter
+	public void setTranscript(Transcript transcript) {
+		this.transcript = transcript;
+		transcript.setStudent(this);
+	}
 }
