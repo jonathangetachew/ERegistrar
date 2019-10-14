@@ -20,7 +20,7 @@ import java.util.List;
 @Table(name = "students")
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = {"transcript", "classrooms"})
 public class Student {
 
 	@Id

@@ -53,9 +53,9 @@
             <li class="disabled" style="font-weight: bold; margin-right: 10px;">Pages: </li>
             <li
                     th:each="i : ${#numbers.sequence(1, transcripts.totalPages)}"
-                    th:class="${currentPageNo}==${i-1}?'blue lighten-1 active':'blue lighten-1'"
+                    th:class="${currentPageNo}==${i-1}?'teal lighten-2 active':'teal lighten-2'"
             >
-                <a th:href="@{/transcripts/search(pageNo=${i-1})}"
+                <a th:href="@{/transcripts(pageNo=${i-1})}"
                    th:text="${i}" class = "page-link"></a>
             </li>
         </ul>

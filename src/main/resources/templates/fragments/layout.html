@@ -1,5 +1,5 @@
 <!doctype html>
-<html th:fragment="layout (template, menu)">
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout (template, menu)">
 
 <head>
 
@@ -18,12 +18,23 @@
 <body>
 <nav>
     <div class="nav-wrapper blue lighten-1">
-        <a th:href="@{'/'}" class="brand-logo"> ERegistrar</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a th:href="@{'/'}">Home</a></li>
-            <li><a th:href="@{'/students'}">Students</a></li>
-            <li><a th:href="@{'/classrooms'}">Classrooms</a></li>
-            <li><a th:href="@{'/transcripts'}">Transcripts</a></li>
+        <a th:href="@{'/'}" class="brand-logo" style="padding-left: 2rem;">
+            <i class="material-icons">school</i>
+            ERegistrar
+        </a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down" style="padding-right: 1rem;">
+            <li th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}">
+                <a th:href="@{'/'}">Home</a>
+            </li>
+            <li th:classappend="${#httpServletRequest.getRequestURI() == '/students' ? 'active':''}">
+                <a th:href="@{'/students'}">Students</a>
+            </li>
+            <li th:classappend="${#httpServletRequest.getRequestURI() == '/classrooms' ? 'active':''}">
+                <a th:href="@{'/classrooms'}">Classrooms</a>
+            </li>
+            <li th:classappend="${#httpServletRequest.getRequestURI() == '/transcripts' ? 'active':''}">
+                <a th:href="@{'/transcripts'}">Transcripts</a>
+            </li>
         </ul>
     </div>
 </nav>

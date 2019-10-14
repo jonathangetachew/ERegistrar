@@ -9,6 +9,7 @@ import edu.mum.se.eregistrar.repositories.StudentRepository;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -30,6 +31,7 @@ public class ERegistrarBootstrap implements ApplicationListener<ContextRefreshed
 	}
 
 	@Override
+	@Transactional
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		loadData();
 	}
@@ -67,6 +69,51 @@ public class ERegistrarBootstrap implements ApplicationListener<ContextRefreshed
 
 		student2.setTranscript(transcript2);
 
+		Student student3 = new Student();
+		student3.setStudentNumber(1L);
+		student3.setFirstName("Derrick");
+		student3.setMiddleName("Martell");
+		student3.setLastName("Rose");
+		student3.setCgpa(3.20);
+		student3.setDateOfEnrollment(LocalDate.now());
+		student3.setStudentType(StudentType.INTERNATIONAL);
+
+		///> Create Transcript
+		Transcript transcript3 = new Transcript();
+		transcript3.setDegreeTitle("BS Computer Science");
+
+		student3.setTranscript(transcript3);
+
+		Student student4 = new Student();
+		student4.setStudentNumber(3L);
+		student4.setFirstName("Dwayne");
+		student4.setMiddleName("Magician");
+		student4.setLastName("Wade");
+		student4.setCgpa(3.40);
+		student4.setDateOfEnrollment(LocalDate.now());
+		student4.setStudentType(StudentType.NATIONAL);
+
+		///> Create Transcript
+		Transcript transcript4 = new Transcript();
+		transcript4.setDegreeTitle("Maharishi Vedic Science");
+
+		student4.setTranscript(transcript4);
+
+		Student student5 = new Student();
+		student5.setStudentNumber(23L);
+		student5.setFirstName("Lebron");
+		student5.setMiddleName("King");
+		student5.setLastName("James");
+		student5.setCgpa(3.00);
+		student5.setDateOfEnrollment(LocalDate.now());
+		student5.setStudentType(StudentType.NATIONAL);
+
+		///> Create Transcript
+		Transcript transcript5 = new Transcript();
+		transcript5.setDegreeTitle("Business");
+
+		student5.setTranscript(transcript5);
+
 		///> Create Classrooms
 		Classroom classroom1 = new Classroom();
 		classroom1.setBuildingName("McLaughlin Building");
@@ -76,12 +123,27 @@ public class ERegistrarBootstrap implements ApplicationListener<ContextRefreshed
 		classroom2.setBuildingName("Library");
 		classroom2.setRoomNumber("L209");
 
+		Classroom classroom3 = new Classroom();
+		classroom3.setBuildingName("Verhill");
+		classroom3.setRoomNumber("V32");
+
+		Classroom classroom4 = new Classroom();
+		classroom4.setBuildingName("Drier");
+		classroom4.setRoomNumber("D20");
+
+		Classroom classroom5 = new Classroom();
+		classroom5.setBuildingName("Veda Bhavan");
+		classroom5.setRoomNumber("D20");
+
 		student1.getClassrooms().addAll(Arrays.asList(classroom1, classroom2));
 		student2.getClassrooms().addAll(Arrays.asList(classroom1, classroom2));
+		student3.getClassrooms().addAll(Arrays.asList(classroom3));
+		student4.getClassrooms().addAll(Arrays.asList(classroom5));
+		student5.getClassrooms().addAll(Arrays.asList(classroom4));
 
 		///> Save Data to DB
-		classroomRepository.saveAll(Arrays.asList(classroom1, classroom2));
-		studentRepository.saveAll(Arrays.asList(student1, student2));
+		classroomRepository.saveAll(Arrays.asList(classroom1, classroom2, classroom3, classroom4, classroom5));
+		studentRepository.saveAll(Arrays.asList(student1, student2, student3, student4, student5));
 
 	}
 }
