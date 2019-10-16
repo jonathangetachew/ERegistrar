@@ -18,6 +18,43 @@
                 <label for="degree_title">Degree Title</label>
             </div>
         </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <table class="responsive-table highlight">
+                    <tr>
+                        <th colspan="2">Student</th>
+                    </tr>
+                    <tr>
+                        <td>Student ID</td>
+                        <td th:text="*{student.id}">Student ID</td>
+                    </tr>
+                    <tr>
+                        <td>Student Number</td>
+                        <td th:text="*{student.studentNumber}">Student Number</td>
+                    </tr>
+                    <tr>
+                        <td>Full Name</td>
+                        <td th:text="*{student.firstName} + ' ' + *{student.middleName} + ' ' + *{student.lastName}">John Doe</td>
+                    </tr>
+                    <tr>
+                        <td>CGPA</td>
+                        <td th:text="*{student.cgpa}">4.0</td>
+                    </tr>
+                    <tr>
+                        <td>Date Of Enrollment</td>
+                        <td th:text="*{student.dateOfEnrollment}">Date</td>
+                    </tr>
+                    <tr>
+                        <td>Student Type</td>
+                        <td th:text="*{student.studentType}">INTERNATIONAL</td>
+                    </tr>
+                    <tr>
+                        <td>Transcript Degree Title</td>
+                        <td th:text="*{student.transcript?.degreeTitle}">Degree Title</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
         <div style="float:right;">
             <a href="/transcripts" class="waves-effect waves-light btn-large">
                 <i class="material-icons left">cancel</i>Cancel

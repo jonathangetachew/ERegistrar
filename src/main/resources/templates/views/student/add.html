@@ -18,26 +18,41 @@
                        type="text" class="validate"
                        required>
                 <label for="student_number">Student Number</label>
+                <span class="helper-text" data-error="wrong" data-success="right"
+                      th:if="${#fields.hasErrors('studentNumber')}" th:errors="*{studentNumber}"
+                      style="color:crimson;">Error</span>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s4">
-                <input placeholder="First Name" id="first_name" type="text" class="validate" required>
+                <input placeholder="First Name" th:field="*{firstName}" id="first_name" type="text" class="validate" required>
                 <label for="first_name">First Name</label>
+                <span class="helper-text" data-error="wrong" data-success="right"
+                      th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                      style="color:crimson;">Error</span>
             </div>
             <div class="input-field col s4">
-                <input placeholder="Middle Name" id="middle_name" type="text" class="validate" required>
+                <input placeholder="Middle Name" th:field="*{middleName}" id="middle_name" type="text" class="validate" required>
                 <label for="middle_name">Middle Name</label>
+                <span class="helper-text" data-error="wrong" data-success="right"
+                      th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}"
+                      style="color:crimson;">Error</span>
             </div>
             <div class="input-field col s4">
-                <input placeholder="Last Name" id="last_name" type="text" class="validate" required>
+                <input placeholder="Last Name" th:field="*{lastName}" id="last_name" type="text" class="validate" required>
                 <label for="last_name">Last Name</label>
+                <span class="helper-text" data-error="wrong" data-success="right"
+                      th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                      style="color:crimson;">Error</span>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s6">
-                <input placeholder="CGPA" id="cgpa" type="text" class="validate" required>
+                <input placeholder="CGPA" th:field="*{cgpa}" id="cgpa" type="text" class="validate" required>
                 <label for="cgpa">CGPA</label>
+                <span class="helper-text" data-error="wrong" data-success="right"
+                      th:if="${#fields.hasErrors('cgpa')}" th:errors="*{cgpa}"
+                      style="color:crimson;">Error</span>
             </div>
             <div class="input-field col s6">
                 <select th:field="*{studentType}" class="browser-default">
@@ -48,16 +63,42 @@
                 </select>
             </div>
         </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input placeholder="Date of Enrollment" th:field="*{dateOfEnrollment}" id="date_of_enrollment"
+                       type="date" class="validate"
+                       required>
+                <label for="date_of_enrollment">Date of Enrollment</label>
+                <span class="helper-text" data-error="wrong" data-success="right"
+                      th:if="${#fields.hasErrors('dateOfEnrollment')}" th:errors="*{dateOfEnrollment}"
+                      style="color:crimson;">Error</span>
+            </div>
+        </div>
         <div style="margin: 1rem 0;">
             <span style="font-size: 2em;">Transcript Information</span>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <select th:field="*{studentType}" class="browser-default">
-                    <option value="" disabled selected>Choose Student Type</option>
-                    <option th:each="studentTypeValue : ${T(edu.mum.se.eregistrar.enums.StudentType).values()}"
-                            th:value="${studentTypeValue.name()}"
-                            th:text="${studentTypeValue.name()}">INTERNATIONAL</option>
+                <input placeholder="Degree Title" th:field="*{transcript.degreeTitle}" id="degree_title"
+                       type="text" class="validate"
+                       required>
+                <label for="degree_title">Degree Title</label>
+                <span class="helper-text" data-error="wrong" data-success="right"
+                      th:if="${#fields.hasErrors('transcript.degreeTitle')}" th:errors="*{transcript.degreeTitle}"
+                      style="color:crimson;">Error</span>
+            </div>
+        </div>
+        <div style="margin: 1rem 0;">
+            <span style="font-size: 2em;">Classroom Information</span>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <label>Classroom:</label>
+                <select class="browser-default" name="classroom.id">
+                    <option th:each="class : ${classrooms}"
+                            th:value="${class.id}"
+                            th:selected="${class.id.equals(student.classrooms.get(id))}"
+                            th:text="${class.roomNumber}">Room Number</option>
                 </select>
             </div>
         </div>
@@ -71,7 +112,5 @@
         </div>
     </form>
 </div>
-<script>
-</script>
 </body>
 </html>

@@ -30,7 +30,7 @@
     </div>
     <table class="responsive-table highlight">
         <tr>
-            <th>ID</th>
+            <th>#</th>
             <th>Degree Title</th>
             <th>Student</th>
             <th></th>
@@ -44,6 +44,9 @@
                     <i class="material-icons left">view_list</i></a></span>
                 <span><a th:href="@{'/transcripts/' + ${transcript.id} + '/edit'}">
                     <i class="material-icons left">edit</i></a></span>
+                <span><a th:href="@{'/transcripts/' + ${transcript.id} + '/delete'}"
+                         th:if="${transcript.student==null or transcripts.isEmpty()}">
+                    <i class="material-icons left" style="color:crimson;">delete</i></a></span>
             </td>
         </tr>
     </table>

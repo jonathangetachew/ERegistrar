@@ -4,9 +4,10 @@ import edu.mum.se.eregistrar.enums.StudentType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,30 +28,32 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull
-	@Column(name = "student_number")
+	@NotNull(message = "Student Number is Required")
+	@Column(name = "student_number", nullable = false)
 	private Long studentNumber;
 
-	@NotEmpty
-	@Column(name = "first_name")
+	@NotBlank(message = "First Name is Required")
+	@Column(name = "first_name", nullable = false)
 	private String firstName;
 
 	@Column(name = "middle_name")
 	private String middleName;
 
-	@NotEmpty
-	@Column(name = "last_name")
+	@NotBlank(message = "Last Name is Required")
+	@Column(name = "last_name", nullable = false)
 	private String lastName;
 
 	private Double cgpa;
 
+	@NotNull(message = "Date of Enrollment is Required")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateOfEnrollment;
 
 	@Enumerated(value = EnumType.STRING)
 	@Column(name = "student_type", nullable = false)
 	private StudentType studentType;
 
-	@OneToOne(cascade = CascadeType.ALL, optional = true)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Transcript transcript;
 
 	@ManyToMany
@@ -61,7 +64,18 @@ public class Student {
 
 	///> Custom Setter
 	public void setTranscript(Transcript transcript) {
-		this.transcript = transcript;
-		transcript.setStudent(this);
+		if (transcript != null) {
+			this.transcript = transcript;
+			transcript.setStudent(this);
+		}
+	}
+
+	public Student addClassroom(Classroom classroom) {
+		List<Student> students = classroom.getStudents();
+		students.add(this);
+		classroom.setStudents(students);
+
+		this.classrooms.add(classroom);
+		return this;
 	}
 }

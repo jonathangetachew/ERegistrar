@@ -46,7 +46,7 @@
             <td th:text="${student.firstName} + ' ' + ${student.middleName} + ' ' + ${student.lastName}">John James Doe</td>
             <td th:text="${student.cgpa}">4.0</td>
             <td th:text="${student.dateOfEnrollment}">22/2/2019</td>
-            <td th:text="${student.transcript.degreeTitle}">BS Everything</td>
+            <td th:text="${student?.transcript?.degreeTitle}">BS Everything</td>
             <td>
                 <span th:each="class : ${student.classrooms}">
                     <span th:text="${class.roomNumber} + ' '">Class</span>

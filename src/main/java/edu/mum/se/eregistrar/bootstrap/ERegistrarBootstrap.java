@@ -80,7 +80,7 @@ public class ERegistrarBootstrap implements ApplicationListener<ContextRefreshed
 
 		///> Create Transcript
 		Transcript transcript3 = new Transcript();
-		transcript3.setDegreeTitle("BS Computer Science");
+		transcript3.setDegreeTitle("Accounting");
 
 		student3.setTranscript(transcript3);
 
